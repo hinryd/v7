@@ -8,6 +8,16 @@ declare global {
 		// interface PageState {}
 		// interface Platform {}
 	}
+
+	interface PortfolioItem {
+		title: string;
+		subtitle: string;
+		description: string;
+		link?: string;
+		github?: string;
+		icon: string;
+		isDownload?: boolean;
+	}
 }
 
 export {};

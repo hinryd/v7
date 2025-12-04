@@ -139,14 +139,25 @@ body {
 }
 
 .avatar-box {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+
     border: var(--border-width) solid var(--border-color);
     background: #888;
     margin-bottom: 20px;
-    background-image: url('https://api.dicebear.com/9.x/notionists/svg?seed=Henry&backgroundColor=b6e3f4');
-    background-size: cover;
-    filter: grayscale(100%) contrast(120%);
+    filter: grayscale(50%) contrast(150%);
+}
+
+.avatar-box img {
+    width: 280%;
+    height: 280%;
+    position: absolute;
+    top: 50%;
+    left: 48%;
+    transform: translate(-50%, -50%);
 }
 
 .icon-box {
@@ -236,6 +247,7 @@ h1 {
 }
 
 .back-btn {
+    width: 5rem;
     padding: 8px;
     background: transparent;
     border: var(--border-width) solid var(--border-color);
@@ -258,7 +270,7 @@ h1 {
 .link-title {
     font-family: 'Syne', sans-serif;
     font-weight: 800;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     letter-spacing: -0.1rem;
     text-transform: uppercase;
 }
@@ -341,6 +353,69 @@ h1 {
     color: var(--text-sub);
     margin-top: 4px;
     font-weight: normal;
+}
+
+/* PORTFOLIO CONTENT */
+.portfolio-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.portfolio-tech {
+    font-family: 'PT Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.portfolio-desc {
+    color: var(--text-sub);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.portfolio-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.portfolio-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: var(--border-width) solid var(--border-color);
+    transition: all 0.15s ease;
+}
+
+.portfolio-btn.primary {
+    background: var(--accent-color);
+    color: #000;
+    border-color: var(--accent-color);
+}
+
+.portfolio-btn.primary:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px 0px var(--border-color);
+}
+
+.portfolio-btn.secondary {
+    background: transparent;
+    color: var(--text-main);
+}
+
+.portfolio-btn.secondary:hover {
+    background: var(--text-main);
+    color: var(--bg-main);
 }
 
 /* BLOG ITEMS */

@@ -1,9 +1,11 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { page } from '$app/state';
-	import { portfolioItems } from '$lib/portfolio';
+	import Accordion from '$lib/Accordion.svelte';
 
+	let { data } = $props();
 	let tab = $derived.by(() => (browser ? (page.url.searchParams.get('tab') ?? 'links') : 'links'));
+	let expanded = $state(false);
 </script>
 
 <div class="container">
@@ -18,7 +20,9 @@
 	<div class="profile-section">
 		<div class="sticker">V7.0.0</div>
 
-		<div class="avatar-box"></div>
+		<div class="avatar-box">
+			<img src="https://avatars.githubusercontent.com/u/48958400?v=4" alt="Henry" />
+		</div>
 		<h1>Henry</h1>
 		<p class="bio">// SOFTWARE ENGINEER<br /> // QUANT SYSTEMS<br /> // HK_BASED</p>
 	</div>
@@ -54,7 +58,15 @@
 			<a href="/?tab=portfolio" class="hybrid-link">
 				<div class="hybrid-link-content">
 					<div>
-						<span class="link-title">Portfolio</span>
+						<span class="link-title">Creations</span>
+					</div>
+				</div>
+				<i class="ri-arrow-right-line"></i>
+			</a>
+			<a href="/?tab=services" class="hybrid-link">
+				<div class="hybrid-link-content">
+					<div>
+						<span class="link-title">Services</span>
 					</div>
 				</div>
 				<i class="ri-arrow-right-line"></i>
@@ -65,26 +77,29 @@
 						<span class="link-title">Resume / CV</span>
 					</div>
 				</div>
-				<i class="ri-arrow-right-up-line"></i>
+				<i class="ri-external-link-line"></i>
 			</a>
 		</div>
 
 		<div id="portfolio" class="list-view" class:active={tab === 'portfolio'}>
 			<a class="back-btn" href="/?tab=links" title="Back"><i class="ri-arrow-left-line"></i></a>
-			{#each portfolioItems as item}
+			{#each data.portfolioItems as item}
+				<Accordion {item} />
+			{/each}
+		</div>
+
+		<div id="services" class="list-view" class:active={tab === 'services'}>
+			<a class="back-btn" href="/?tab=links" title="Back"><i class="ri-arrow-left-line"></i></a>
+
+			{#each data.services as item}
 				<a href={item.link} class="hybrid-link">
 					<div class="hybrid-link-content">
-						<img
-							class="hybrid-link-icon"
-							src="https://api.dicebear.com/9.x/notionists/svg?seed=Henry&backgroundColor=b6e3f4"
-							alt=""
-						/>
 						<div>
 							<span>{item.title}</span>
 							<span class="link-sub">{item.subtitle}</span>
 						</div>
 					</div>
-					<i class={item.icon}></i>
+					<i class="ri-external-link-line"></i>
 				</a>
 			{/each}
 		</div>
