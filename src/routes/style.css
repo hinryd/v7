@@ -86,7 +86,7 @@ body {
 
 /* THEME TOGGLE SWITCH */
 .theme-switch {
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 20px;
     background: var(--card-bg);
@@ -251,7 +251,7 @@ h1 {
     padding: 8px;
     background: transparent;
     border: var(--border-width) solid var(--border-color);
-    color: white;
+    color: var(--text-main);
     text-decoration: none;
     font-size: 1.4rem;
     font-weight: bold;

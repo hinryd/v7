@@ -5,7 +5,13 @@
 
 	let { data } = $props();
 	let tab = $derived.by(() => (browser ? (page.url.searchParams.get('tab') ?? 'links') : 'links'));
-	let expanded = $state(false);
+	let theme = $state('dark');
+
+	const toggleTheme = (e: Event) => {
+		e.preventDefault();
+		theme = theme === 'dark' ? 'light' : 'dark';
+		document.body.classList.toggle('light-mode');
+	};
 </script>
 
 <div class="container">
@@ -24,7 +30,7 @@
 			<img src="https://avatars.githubusercontent.com/u/48958400?v=4" alt="Henry" />
 		</div>
 		<h1>Henry</h1>
-		<p class="bio">// SOFTWARE ENGINEER<br /> // QUANT SYSTEMS<br /> // HK_BASED</p>
+		<p class="bio">// SOFTWARE ENGINEER // FRONTEND // BACKEND // ML // DEVOPS // HK_BASED</p>
 	</div>
 
 	<!-- Socials Row -->
@@ -79,6 +85,14 @@
 				</div>
 				<i class="ri-external-link-line"></i>
 			</a>
+			<button class="hybrid-link" onmousedown={toggleTheme} style="text-align: left;"
+				><div class="hybrid-link-content">
+					<div>
+						<span class="link-title">TURN {theme === 'dark' ? 'ON' : 'OFF'} THE LIGHT</span>
+					</div>
+				</div>
+				<i class={theme === 'dark' ? 'ri-sun-line' : 'ri-moon-line'}></i></button
+			>
 		</div>
 
 		<div id="portfolio" class="list-view" class:active={tab === 'portfolio'}>
