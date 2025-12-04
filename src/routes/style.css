@@ -1,0 +1,434 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Mono&family=Syne:wght@700;800&family=Spline+Sans+Mono:ital,wght@0,300..700;1,300..700&&family=Geist:wght@100..900&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css');
+
+/* DARK MODE (DEFAULT) VARIABLES */
+:root {
+    --bg-color: #080808;
+    --text-main: #ffffff;
+    --text-sub: #888888;
+    --accent-color: #CCFF00;
+    /* Acid Green */
+    --border-color: #e0e0e0;
+    --card-bg: #000000;
+    --chrome-text: linear-gradient(180deg, #fff 0%, #bbb 40%, #888 50%, #ddd 60%, #fff 100%);
+    --border-width: 3px;
+    --shadow-offset: 6px;
+    --grid-opacity: 0.08;
+}
+
+/* LIGHT MODE VARIABLES */
+body.light-mode {
+    --bg-color: #f2f2f2;
+    --text-main: #111111;
+    --text-sub: #555555;
+    --accent-color: #CCFF00;
+    /* Keep the acid green for contrast against black borders */
+    --border-color: #111111;
+    --card-bg: #ffffff;
+    --chrome-text: linear-gradient(180deg, #111 0%, #555 40%, #333 50%, #666 60%, #111 100%);
+    --grid-opacity: 0.08;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Spline Sans Mono', monospace;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    position: relative;
+    overflow-x: hidden;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* ANIMATED BACKGROUND FX */
+.grid-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* Define the grid pattern */
+    background-image:
+        linear-gradient(var(--text-main) 1px, transparent 1px),
+        linear-gradient(90deg, var(--text-main) 1px, transparent 1px);
+
+    background-size: 40px 40px;
+    /* Size of one grid square */
+    opacity: var(--grid-opacity);
+    z-index: -1;
+    pointer-events: none;
+
+    /* The Animation: Move infinitely */
+    animation: gridMove 5s linear infinite;
+}
+
+/* The Keyframes: Move diagonally */
+@keyframes gridMove {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 40px 40px;
+        /* Must match background-size for seamless loop */
+    }
+}
+
+/* THEME TOGGLE SWITCH */
+.theme-switch {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--card-bg);
+    border: var(--border-width) solid var(--border-color);
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.2rem;
+    box-shadow: 4px 4px 0 var(--accent-color);
+    transition: 0.2s;
+    z-index: 10;
+    color: var(--text-main);
+}
+
+.theme-switch:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--accent-color);
+}
+
+.container {
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    z-index: 1;
+}
+
+/* PROFILE SECTION */
+.profile-section {
+    border: var(--border-width) solid var(--border-color);
+    /* background: var(--card-bg); */
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0px 0px var(--accent-color);
+    position: relative;
+}
+
+.sticker {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background: var(--accent-color);
+    color: black;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    border: 2px solid var(--text-main);
+    /* Contrast border */
+    transform: rotate(5deg);
+    box-shadow: 3px 3px 0 var(--border-color);
+}
+
+.avatar-box {
+    width: 80px;
+    height: 80px;
+    border: var(--border-width) solid var(--border-color);
+    background: #888;
+    margin-bottom: 20px;
+    background-image: url('https://api.dicebear.com/9.x/notionists/svg?seed=Henry&backgroundColor=b6e3f4');
+    background-size: cover;
+    filter: grayscale(100%) contrast(120%);
+}
+
+.icon-box {
+    width: 60px;
+    height: 60px;
+    border: var(--border-width) solid var(--border-color);
+    margin-right: 5px;
+    background: #888;
+    background-image: url('https://api.dicebear.com/9.x/notionists/svg?seed=Henry&backgroundColor=b6e3f4');
+    background-size: cover;
+    filter: grayscale(100%) contrast(120%);
+}
+
+h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 3rem;
+    line-height: 0.9;
+    text-transform: uppercase;
+    background: var(--chrome-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 10px;
+    /* Outline for readability in light mode */
+    -webkit-text-stroke: 1px var(--border-color);
+}
+
+.bio {
+    color: var(--text-sub);
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+/* CONTROLLER BUTTONS (The "Links") */
+.controllers {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    overflow-x: scroll;
+}
+
+.control-btn {
+    flex: 1;
+    padding: 20px;
+    background: transparent;
+    border: var(--border-width) solid var(--border-color);
+    color: var(--text-sub);
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    position: relative;
+}
+
+.control-btn.active {
+    background: var(--accent-color);
+    color: black;
+    border-color: var(--border-color);
+    box-shadow: 4px 4px 0px 0px var(--border-color);
+    transform: translate(-2px, -2px);
+    z-index: 2;
+}
+
+/* CONTENT AREA */
+.content-wrapper {
+    position: relative;
+    min-height: 300px;
+    overflow:visible;
+    /* Essential for sliding */
+}
+
+.list-view {
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    /* Animation Setup */
+    animation: slideInRight 0.2s ease-in-out;
+}
+
+.list-view.active {
+    display: flex;
+}
+
+.back-btn {
+    padding: 8px;
+    background: transparent;
+    border: var(--border-width) solid var(--border-color);
+    color: white;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    position: relative;
+}
+
+.back-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px 0px var(--border-color);
+    z-index: 2;
+}
+
+.link-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: -0.1rem;
+    text-transform: uppercase;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.list-view.slide-left {
+    animation: slideInLeft 0.2s ease-in-out;
+}
+
+/* LINK ITEMS */
+.hybrid-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+    text-decoration: none;
+    background: var(--card-bg);
+    border: var(--border-width) solid var(--border-color);
+    color: var(--text-main);
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.15s;
+}
+
+.hybrid-link i {
+    font-size: 1.2rem;
+}
+
+.hybrid-link:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 6px 6px 0px 0px var(--accent-color);
+    border-color: var(--text-main);
+    z-index: 10;
+}
+
+.hybrid-link:active {
+    transform: translate(var(--shadow-offset), var(--shadow-offset));
+    box-shadow: 0px 0px 0px 0px #000;
+}
+
+.hybrid-link-content {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.hybrid-link-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+}
+
+.link-sub {
+    display: block;
+    font-family: 'PT Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-sub);
+    margin-top: 4px;
+    font-weight: normal;
+}
+
+/* BLOG ITEMS */
+.blog-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    text-decoration: none;
+    color: var(--text-main);
+    transition: all 0.2s;
+    border-left: 4px solid var(--accent-color);
+    font-family: 'Syne', sans-serif;
+}
+
+.blog-item:hover {
+    background: var(--bg-color);
+    transform: translateX(8px);
+}
+
+.blog-date {
+    font-size: 0.65rem;
+    color: var(--text-sub);
+    margin-bottom: 6px;
+    display: block;
+}
+
+/* SOCIAL ROW */
+.social-row {
+    display: flex;
+    gap: 12px;
+    padding-bottom: 20px;
+
+}
+
+.social-btn {
+    flex: 1;
+    height: 48px;
+    background: var(--card-bg);
+    border: var(--border-width) solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 1.2rem;
+    transition: 0.15s;
+}
+
+.social-btn i {
+    font-size: 1.75rem;
+}
+
+.social-btn:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 4px 4px 0px 0px var(--accent-color);
+    background: var(--accent-color);
+    color: black;
+}
+
+/* TICKER */
+.ticker-wrap {
+    margin-bottom: 40px;
+    width: 100%;
+    overflow: hidden;
+    border-top: 2px solid var(--border-color);
+    padding: 8px 0;
+    background: var(--card-bg);
+}
+
+.ticker {
+    white-space: nowrap;
+    animation: ticker 20s linear infinite;
+    font-size: 0.75rem;
+    color: var(--text-main);
+    font-weight: bold;
+    font-family: 'PT Mono', monospace;
+}
+
+.ticker strong {
+    color: var(--accent-color);
+}
+
+@keyframes ticker {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
