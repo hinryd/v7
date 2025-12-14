@@ -1,10 +1,19 @@
 import FionaIcon from '$lib/assets/fiona.jpg';
-import Y18 from '$lib/assets/y18.svg';
+import Y18Icon from '$lib/assets/y18.svg';
 import BrawlKingIcon from '$lib/assets/brawlking.webp';
 import OgreIcon from '$lib/assets/ogre_white.webp';
 import HKJCIcon from '$lib/assets/hkjc.jpg';
+import WavezIcon from '$lib/assets/wavez.webp';
 
 const portfolioItems: PortfolioItem[] = [
+	{
+		title: 'Wavez',
+		subtitle: 'Svelte / Typesciprt',
+		description: 'Colored noise generator for focus, masking, and sound design',
+		link: 'https://wavez.hinry.xyz',
+		github: 'https://github.com/hinryd/wavez',
+		icon: WavezIcon
+	},
 	{
 		title: 'OGRE Workout 🚧',
 		subtitle: 'Flutter / Supabase',
@@ -27,6 +36,7 @@ const portfolioItems: PortfolioItem[] = [
 		link: 'https://t.me/fiona_group_admin_bot',
 		icon: FionaIcon
 	},
+
 	{
 		title: 'hn-svelte',
 		subtitle: 'Hacker News / Svelte',
@@ -34,7 +44,7 @@ const portfolioItems: PortfolioItem[] = [
 			'A modern and sleek application for reading Hacker News, with split view and dark mode support! 🌙',
 		link: 'https://hn-svelte-omega.vercel.app',
 		github: 'https://github.com/hinryd/hn-svelte',
-		icon: Y18
+		icon: Y18Icon
 	},
 	{
 		title: 'BrawlKing',
