@@ -1,24 +1,20 @@
-# Build stage
-FROM node:24-trixie-slim AS builder
+FROM oven/bun:slim AS builder
 
 WORKDIR /app
-
-# Install pnpm globally
-RUN npm install -g pnpm
 
 # Copy package files
 COPY package.json pnpm-lock.yaml* ./
 
 # Install all dependencies (including dev dependencies for build)
-RUN pnpm install --frozen-lockfile
+RUN bun install
 
 # Copy source files
 COPY . .
 
 # Build the application
-RUN pnpm run build
+RUN bun run build
 
-FROM node:24-trixie-slim
+FROM oven/bun:slim
 
 WORKDIR /app
 
@@ -29,4 +25,4 @@ EXPOSE 3000
 
 ENV NODE_ENV=production
 
-CMD ["node", "build/index.js"]
+CMD ["bun", "build/index.js"]
